@@ -10,7 +10,7 @@ export function* load(action: Effect): SagaIterator {
   try {
     const response = yield call(
       api.get,
-      `/search/repositories?q=${searchParam}&per_page=10`,
+      `/search/repositories?q=${searchParam}`,
     );
 
     yield put(loadSuccess(response.data.items));

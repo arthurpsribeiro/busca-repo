@@ -2,9 +2,11 @@ import styled from 'styled-components/native';
 import Feather from 'react-native-vector-icons/Feather';
 // import theme from '../../styles/theme';
 
+import { Platform } from 'react-native';
+
 export const Container = styled.View`
   flex-direction: row;
-  padding: 10px;
+  padding: ${Platform.OS === 'ios' ? '10px' : '0px 10px'};
   border-radius: 10px;
 
   background-color: ${({ theme }) => theme.colors.background_secondary};
