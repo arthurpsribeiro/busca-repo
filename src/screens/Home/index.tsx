@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { ApplicationsState } from '../../store';
 import Search from '../../components/Search';
 import { Container, Title, VerticalSpacing } from './styles';
+import RepositoryItem from '../../components/RepositoryItem';
 
 const Home: React.FC = () => {
   const repositories = useSelector(
@@ -25,8 +26,9 @@ const Home: React.FC = () => {
       ) : (
         <FlatList
           data={repositoriesData}
-          renderItem={({ item }) => <Text>{item.name}</Text>}
+          renderItem={({ item }) => <RepositoryItem repository={item} />}
           ListEmptyComponent={() => <Text>Sem resultados para exibir</Text>}
+          ItemSeparatorComponent={VerticalSpacing}
         />
       )}
     </Container>

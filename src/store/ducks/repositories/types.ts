@@ -6,11 +6,15 @@ export enum RepositoriesTypes {
 }
 
 // Data Types
+export interface Owner {
+  avatar_url: string;
+  login: string;
+}
 export interface Repository {
   id: number;
   name: string;
-  owner: string;
-  stargazers: number;
+  owner: Owner;
+  stargazers_count: number;
 }
 
 // State type
