@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { useNavigation, useRoute } from '@react-navigation/native';
 import WebView from 'react-native-webview';
+
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { Container } from './styles';
 

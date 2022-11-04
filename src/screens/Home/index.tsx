@@ -3,13 +3,14 @@ import { FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import { ApplicationsState } from '../../store';
-import Search from '../../components/Search';
-import { Container, Title, VerticalSpacing } from './styles';
-import RepositoryItem from '../../components/RepositoryItem';
+
 import { useNavigation } from '@react-navigation/native';
+import Search from '../../components/Search';
+import RepositoryItem from '../../components/RepositoryItem';
 import ListSeaparator from '../../components/RepositoryList/ListSeaparator';
 import EmptyComponent from '../../components/RepositoryList/EmptyComponent';
 import Loading from '../../components/RepositoryList/Loading';
+import { Container, Title, VerticalSpacing } from './styles';
 
 const Home: React.FC = () => {
   const repositories = useSelector(
