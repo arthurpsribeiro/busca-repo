@@ -30,8 +30,11 @@ export const Avatar = styled.Image`
   border-radius: 30px;
 `;
 
-export const RepositoryName = styled.Text``;
+export const RepositoryName = styled.Text`
+  color: ${({ theme }) => theme.colors.text_primary};
+  font-weight: 600;
+`;
 
-export const Stargazers = styled.Text``;
-
-export const OwnerName = styled.Text``;
+export const RepoitoryInfo = styled.Text`
+  color: ${({ theme }) => theme.colors.text_secondary_dark};
+`;

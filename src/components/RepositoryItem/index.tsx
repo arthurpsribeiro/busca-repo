@@ -7,8 +7,7 @@ import {
   SumaryHeader,
   Avatar,
   RepositoryName,
-  Stargazers,
-  OwnerName,
+  RepoitoryInfo,
 } from './styles';
 
 interface RepositoryItemProps {
@@ -30,9 +29,9 @@ const RepositoryItem: React.FC<RepositoryItemProps> = ({
       <Sumary>
         <SumaryHeader>
           <RepositoryName>{repository.name}</RepositoryName>
-          <Stargazers>{repository.stargazers_count} stars</Stargazers>
+          <RepoitoryInfo>{repository.stargazers_count} stars</RepoitoryInfo>
         </SumaryHeader>
-        <OwnerName>{repository.owner.login}</OwnerName>
+        <RepoitoryInfo>{repository.owner.login}</RepoitoryInfo>
       </Sumary>
     </Container>
   );

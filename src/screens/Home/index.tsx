@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, FlatList, Text } from 'react-native';
+import { FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import { ApplicationsState } from '../../store';
@@ -7,6 +7,9 @@ import Search from '../../components/Search';
 import { Container, Title, VerticalSpacing } from './styles';
 import RepositoryItem from '../../components/RepositoryItem';
 import { useNavigation } from '@react-navigation/native';
+import ListSeaparator from '../../components/RepositoryList/ListSeaparator';
+import EmptyComponent from '../../components/RepositoryList/EmptyComponent';
+import Loading from '../../components/RepositoryList/Loading';
 
 const Home: React.FC = () => {
   const repositories = useSelector(
@@ -25,7 +28,7 @@ const Home: React.FC = () => {
       <VerticalSpacing />
 
       {repositoriesLoading ? (
-        <ActivityIndicator />
+        <Loading />
       ) : (
         <FlatList
           data={repositoriesData}
@@ -40,8 +43,9 @@ const Home: React.FC = () => {
               }
             />
           )}
-          ListEmptyComponent={() => <Text>Sem resultados para exibir</Text>}
-          ItemSeparatorComponent={VerticalSpacing}
+          ListEmptyComponent={EmptyComponent}
+          ItemSeparatorComponent={ListSeaparator}
+          showsVerticalScrollIndicator={false}
         />
       )}
     </Container>
