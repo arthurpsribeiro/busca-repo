@@ -15,6 +15,7 @@ export interface Repository {
   name: string;
   owner: Owner;
   stargazers_count: number;
+  html_url: string;
 }
 
 // State type

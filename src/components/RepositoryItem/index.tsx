@@ -13,13 +13,15 @@ import {
 
 interface RepositoryItemProps {
   repository: Repository;
+  handlePress: () => void;
 }
 
 const RepositoryItem: React.FC<RepositoryItemProps> = ({
   repository,
+  handlePress,
 }: RepositoryItemProps) => {
   return (
-    <Container>
+    <Container onPress={handlePress}>
       <Avatar
         source={{
           uri: repository.owner.avatar_url,

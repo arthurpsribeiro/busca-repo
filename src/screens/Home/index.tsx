@@ -6,6 +6,7 @@ import { ApplicationsState } from '../../store';
 import Search from '../../components/Search';
 import { Container, Title, VerticalSpacing } from './styles';
 import RepositoryItem from '../../components/RepositoryItem';
+import { useNavigation } from '@react-navigation/native';
 
 const Home: React.FC = () => {
   const repositories = useSelector(
@@ -13,6 +14,8 @@ const Home: React.FC = () => {
   );
 
   const { data: repositoriesData, loading: repositoriesLoading } = repositories;
+
+  const navigation = useNavigation();
 
   return (
     <Container>
@@ -26,7 +29,17 @@ const Home: React.FC = () => {
       ) : (
         <FlatList
           data={repositoriesData}
-          renderItem={({ item }) => <RepositoryItem repository={item} />}
+          renderItem={({ item }) => (
+            <RepositoryItem
+              repository={item}
+              handlePress={() =>
+                navigation.navigate('RepositoryPage', {
+                  url: item.html_url,
+                  title: item.name,
+                })
+              }
+            />
+          )}
           ListEmptyComponent={() => <Text>Sem resultados para exibir</Text>}
           ItemSeparatorComponent={VerticalSpacing}
         />
