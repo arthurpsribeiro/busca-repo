@@ -1,47 +1,36 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators, Dispatch } from 'redux';
+import React from 'react';
+import { ActivityIndicator, FlatList, Text } from 'react-native';
+import { useSelector } from 'react-redux';
 
-import { Repository } from '../../store/ducks/repositories/types';
 import { ApplicationsState } from '../../store';
+import Search from '../../components/Search';
+import { Container, Title, VerticalSpacing } from './styles';
 
-import * as RepositoriesActions from '../../store/ducks/repositories/actions';
-import { Text, View } from 'react-native';
+const Home: React.FC = () => {
+  const repositories = useSelector(
+    (state: ApplicationsState) => state.repositories,
+  );
 
-interface StateProps {
-  repositories: Repository[];
-}
+  const { data: repositoriesData, loading: repositoriesLoading } = repositories;
 
-interface DispatchProps {
-  loadRequest(): void;
-}
+  return (
+    <Container>
+      <Title>Repositórios</Title>
+      <VerticalSpacing />
+      <Search />
+      <VerticalSpacing />
 
-type HomeProps = StateProps & DispatchProps;
+      {repositoriesLoading ? (
+        <ActivityIndicator />
+      ) : (
+        <FlatList
+          data={repositoriesData}
+          renderItem={({ item }) => <Text>{item.name}</Text>}
+          ListEmptyComponent={() => <Text>Sem resultados para exibir</Text>}
+        />
+      )}
+    </Container>
+  );
+};
 
-class RepositoryList extends Component<HomeProps> {
-  componentDidMount(): void {
-    const { loadRequest } = this.props;
-
-    loadRequest();
-  }
-
-  render() {
-    const { repositories } = this.props;
-    return (
-      <View>
-        {repositories.map(repository => (
-          <Text>{repository.name}</Text>
-        ))}
-      </View>
-    );
-  }
-}
-
-const mapStateToProps = (state: ApplicationsState) => ({
-  repositories: state.repositories.data,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) =>
-  bindActionCreators(RepositoriesActions, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(RepositoryList);
+export default Home;

@@ -7,6 +7,7 @@ import theme from './src/styles/theme';
 
 import Home from './src/screens/Home';
 import store from './src/store';
+import SearchInput from './src/components/Search';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Provider store={store}>
           <StatusBar />
           <Home />
+          {/* <SearchInput /> */}
         </Provider>
       </ThemeProvider>
     </SafeAreaView>

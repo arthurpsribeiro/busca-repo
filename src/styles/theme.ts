@@ -13,5 +13,6 @@ export default {
     base: RFValue(16),
     lg: RFValue(18),
     xl: RFValue(20),
+    xxl: RFValue(28),
   },
 };
