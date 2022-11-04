@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Text } from 'react-native';
+import { FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import { ApplicationsState } from '../../store';
@@ -33,13 +33,14 @@ const Home: React.FC = () => {
       ) : (
         <FlatList
           data={repositoriesData}
-          renderItem={({ item }) => (
+          keyExtractor={repository => `${repository.id}`}
+          renderItem={({ item: repository }) => (
             <RepositoryItem
-              repository={item}
+              repository={repository}
               handlePress={() =>
                 navigation.navigate('RepositoryPage', {
-                  url: item.html_url,
-                  title: item.name,
+                  url: repository.html_url,
+                  title: repository.name,
                 })
               }
             />

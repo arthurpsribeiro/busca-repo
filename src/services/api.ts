@@ -1,5 +1,6 @@
 import axios from 'axios';
+import { API_BASE_URL } from '@env';
 
 export const api = axios.create({
-  baseURL: 'https://api.github.com',
+  baseURL: API_BASE_URL,
 });
